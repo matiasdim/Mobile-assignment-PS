@@ -7,13 +7,20 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		603A5C18252D06CD00E2B530 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603A5C16252D06CD00E2B530 /* RootViewController.swift */; };
+		603A5C19252D06CD00E2B530 /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 603A5C17252D06CD00E2B530 /* RootViewController.xib */; };
+		603A5C1C252D0C4F00E2B530 /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 603A5C1A252D0C4F00E2B530 /* LocationTableViewCell.swift */; };
+		603A5C1D252D0C4F00E2B530 /* LocationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 603A5C1B252D0C4F00E2B530 /* LocationTableViewCell.xib */; };
 		6080F137252CD68A009FA4A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6080F136252CD68A009FA4A2 /* AppDelegate.swift */; };
 		6080F139252CD68A009FA4A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6080F138252CD68A009FA4A2 /* SceneDelegate.swift */; };
 		6080F140252CD68E009FA4A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6080F13F252CD68E009FA4A2 /* Assets.xcassets */; };
 		6080F143252CD68E009FA4A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6080F141252CD68E009FA4A2 /* LaunchScreen.storyboard */; };
 		6080F14E252CD68E009FA4A2 /* MobileAssignmentPSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6080F14D252CD68E009FA4A2 /* MobileAssignmentPSTests.swift */; };
-		6080F15C252CDCE5009FA4A2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6080F15A252CDCE5009FA4A2 /* HomeViewController.swift */; };
-		6080F15D252CDCE5009FA4A2 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6080F15B252CDCE5009FA4A2 /* HomeViewController.xib */; };
+		6080F15F252CDF8D009FA4A2 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6080F15E252CDF8D009FA4A2 /* Location.swift */; };
+		6080F162252CE1CD009FA4A2 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6080F161252CE1CD009FA4A2 /* NetworkManager.swift */; };
+		608C4019252D26D300C8B740 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608C4017252D26D300C8B740 /* LocationDetailViewController.swift */; };
+		608C401A252D26D300C8B740 /* LocationDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 608C4018252D26D300C8B740 /* LocationDetailViewController.xib */; };
+		608C401C252D283700C8B740 /* Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608C401B252D283700C8B740 /* Extras.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +34,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		603A5C16252D06CD00E2B530 /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		603A5C17252D06CD00E2B530 /* RootViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RootViewController.xib; sourceTree = "<group>"; };
+		603A5C1A252D0C4F00E2B530 /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
+		603A5C1B252D0C4F00E2B530 /* LocationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationTableViewCell.xib; sourceTree = "<group>"; };
 		6080F133252CD68A009FA4A2 /* MobileAssignmentPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileAssignmentPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6080F136252CD68A009FA4A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6080F138252CD68A009FA4A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -36,8 +47,11 @@
 		6080F149252CD68E009FA4A2 /* MobileAssignmentPSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileAssignmentPSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6080F14D252CD68E009FA4A2 /* MobileAssignmentPSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileAssignmentPSTests.swift; sourceTree = "<group>"; };
 		6080F14F252CD68E009FA4A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		6080F15A252CDCE5009FA4A2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
-		6080F15B252CDCE5009FA4A2 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
+		6080F15E252CDF8D009FA4A2 /* Location.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
+		6080F161252CE1CD009FA4A2 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
+		608C4017252D26D300C8B740 /* LocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
+		608C4018252D26D300C8B740 /* LocationDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationDetailViewController.xib; sourceTree = "<group>"; };
+		608C401B252D283700C8B740 /* Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extras.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +93,10 @@
 		6080F135252CD68A009FA4A2 /* MobileAssignmentPS */ = {
 			isa = PBXGroup;
 			children = (
+				6080F160252CE0F1009FA4A2 /* Networking */,
 				6080F159252CDC9B009FA4A2 /* ControllersAndViews */,
 				6080F158252CDC7E009FA4A2 /* Models */,
+				608C401B252D283700C8B740 /* Extras.swift */,
 				6080F136252CD68A009FA4A2 /* AppDelegate.swift */,
 				6080F138252CD68A009FA4A2 /* SceneDelegate.swift */,
 				6080F141252CD68E009FA4A2 /* LaunchScreen.storyboard */,
@@ -102,6 +118,7 @@
 		6080F158252CDC7E009FA4A2 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				6080F15E252CDF8D009FA4A2 /* Location.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -109,10 +126,22 @@
 		6080F159252CDC9B009FA4A2 /* ControllersAndViews */ = {
 			isa = PBXGroup;
 			children = (
-				6080F15A252CDCE5009FA4A2 /* HomeViewController.swift */,
-				6080F15B252CDCE5009FA4A2 /* HomeViewController.xib */,
+				603A5C16252D06CD00E2B530 /* RootViewController.swift */,
+				603A5C17252D06CD00E2B530 /* RootViewController.xib */,
+				608C4017252D26D300C8B740 /* LocationDetailViewController.swift */,
+				608C4018252D26D300C8B740 /* LocationDetailViewController.xib */,
+				603A5C1A252D0C4F00E2B530 /* LocationTableViewCell.swift */,
+				603A5C1B252D0C4F00E2B530 /* LocationTableViewCell.xib */,
 			);
 			path = ControllersAndViews;
+			sourceTree = "<group>";
+		};
+		6080F160252CE0F1009FA4A2 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				6080F161252CE1CD009FA4A2 /* NetworkManager.swift */,
+			);
+			path = Networking;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,7 +227,9 @@
 			files = (
 				6080F143252CD68E009FA4A2 /* LaunchScreen.storyboard in Resources */,
 				6080F140252CD68E009FA4A2 /* Assets.xcassets in Resources */,
-				6080F15D252CDCE5009FA4A2 /* HomeViewController.xib in Resources */,
+				608C401A252D26D300C8B740 /* LocationDetailViewController.xib in Resources */,
+				603A5C1D252D0C4F00E2B530 /* LocationTableViewCell.xib in Resources */,
+				603A5C19252D06CD00E2B530 /* RootViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,9 +247,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				603A5C1C252D0C4F00E2B530 /* LocationTableViewCell.swift in Sources */,
+				603A5C18252D06CD00E2B530 /* RootViewController.swift in Sources */,
+				608C4019252D26D300C8B740 /* LocationDetailViewController.swift in Sources */,
 				6080F137252CD68A009FA4A2 /* AppDelegate.swift in Sources */,
 				6080F139252CD68A009FA4A2 /* SceneDelegate.swift in Sources */,
-				6080F15C252CDCE5009FA4A2 /* HomeViewController.swift in Sources */,
+				6080F162252CE1CD009FA4A2 /* NetworkManager.swift in Sources */,
+				608C401C252D283700C8B740 /* Extras.swift in Sources */,
+				6080F15F252CDF8D009FA4A2 /* Location.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
