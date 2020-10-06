@@ -9,11 +9,11 @@
 /* Begin PBXBuildFile section */
 		6080F137252CD68A009FA4A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6080F136252CD68A009FA4A2 /* AppDelegate.swift */; };
 		6080F139252CD68A009FA4A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6080F138252CD68A009FA4A2 /* SceneDelegate.swift */; };
-		6080F13B252CD68A009FA4A2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6080F13A252CD68A009FA4A2 /* ViewController.swift */; };
-		6080F13E252CD68A009FA4A2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6080F13C252CD68A009FA4A2 /* Main.storyboard */; };
 		6080F140252CD68E009FA4A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6080F13F252CD68E009FA4A2 /* Assets.xcassets */; };
 		6080F143252CD68E009FA4A2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6080F141252CD68E009FA4A2 /* LaunchScreen.storyboard */; };
 		6080F14E252CD68E009FA4A2 /* MobileAssignmentPSTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6080F14D252CD68E009FA4A2 /* MobileAssignmentPSTests.swift */; };
+		6080F15C252CDCE5009FA4A2 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6080F15A252CDCE5009FA4A2 /* HomeViewController.swift */; };
+		6080F15D252CDCE5009FA4A2 /* HomeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6080F15B252CDCE5009FA4A2 /* HomeViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -30,14 +30,14 @@
 		6080F133252CD68A009FA4A2 /* MobileAssignmentPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileAssignmentPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6080F136252CD68A009FA4A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6080F138252CD68A009FA4A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		6080F13A252CD68A009FA4A2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		6080F13D252CD68A009FA4A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		6080F13F252CD68E009FA4A2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6080F142252CD68E009FA4A2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		6080F144252CD68E009FA4A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		6080F149252CD68E009FA4A2 /* MobileAssignmentPSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MobileAssignmentPSTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6080F14D252CD68E009FA4A2 /* MobileAssignmentPSTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileAssignmentPSTests.swift; sourceTree = "<group>"; };
 		6080F14F252CD68E009FA4A2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6080F15A252CDCE5009FA4A2 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		6080F15B252CDCE5009FA4A2 /* HomeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,12 +79,12 @@
 		6080F135252CD68A009FA4A2 /* MobileAssignmentPS */ = {
 			isa = PBXGroup;
 			children = (
+				6080F159252CDC9B009FA4A2 /* ControllersAndViews */,
+				6080F158252CDC7E009FA4A2 /* Models */,
 				6080F136252CD68A009FA4A2 /* AppDelegate.swift */,
 				6080F138252CD68A009FA4A2 /* SceneDelegate.swift */,
-				6080F13A252CD68A009FA4A2 /* ViewController.swift */,
-				6080F13C252CD68A009FA4A2 /* Main.storyboard */,
-				6080F13F252CD68E009FA4A2 /* Assets.xcassets */,
 				6080F141252CD68E009FA4A2 /* LaunchScreen.storyboard */,
+				6080F13F252CD68E009FA4A2 /* Assets.xcassets */,
 				6080F144252CD68E009FA4A2 /* Info.plist */,
 			);
 			path = MobileAssignmentPS;
@@ -97,6 +97,22 @@
 				6080F14F252CD68E009FA4A2 /* Info.plist */,
 			);
 			path = MobileAssignmentPSTests;
+			sourceTree = "<group>";
+		};
+		6080F158252CDC7E009FA4A2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6080F159252CDC9B009FA4A2 /* ControllersAndViews */ = {
+			isa = PBXGroup;
+			children = (
+				6080F15A252CDCE5009FA4A2 /* HomeViewController.swift */,
+				6080F15B252CDCE5009FA4A2 /* HomeViewController.xib */,
+			);
+			path = ControllersAndViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -182,7 +198,7 @@
 			files = (
 				6080F143252CD68E009FA4A2 /* LaunchScreen.storyboard in Resources */,
 				6080F140252CD68E009FA4A2 /* Assets.xcassets in Resources */,
-				6080F13E252CD68A009FA4A2 /* Main.storyboard in Resources */,
+				6080F15D252CDCE5009FA4A2 /* HomeViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,9 +216,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6080F13B252CD68A009FA4A2 /* ViewController.swift in Sources */,
 				6080F137252CD68A009FA4A2 /* AppDelegate.swift in Sources */,
 				6080F139252CD68A009FA4A2 /* SceneDelegate.swift in Sources */,
+				6080F15C252CDCE5009FA4A2 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,14 +241,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		6080F13C252CD68A009FA4A2 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				6080F13D252CD68A009FA4A2 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		6080F141252CD68E009FA4A2 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
