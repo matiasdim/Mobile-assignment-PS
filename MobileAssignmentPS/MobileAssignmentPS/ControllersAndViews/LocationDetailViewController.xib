@@ -9,7 +9,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationDetailViewController" customModule="MobileAssignmentPS" customModuleProvider="target">
             <connections>
-                <outlet property="mapView" destination="88N-9D-Rh4" id="z7C-QM-0Ht"/>
                 <outlet property="temperatureLabel" destination="MUX-EA-KMK" id="Ebt-em-zpt"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
