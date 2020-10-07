@@ -13,6 +13,8 @@ class RootViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableEmptyView: UIView!
     let userDefaultsLocationKey = "locations"
+    let dispatchGroup = DispatchGroup()
+    let dispatchGroupCounter = 0
     
     var locations: [Location] = []
     let cellReuseIdentifier = "reuseIdentifier"
@@ -22,12 +24,32 @@ class RootViewController: UIViewController {
         self.title = "My Locations"
         self.tableView.register(UINib(nibName: "LocationTableViewCell", bundle: nil), forCellReuseIdentifier: self.cellReuseIdentifier)
         
+        let removeAllButton = UIBarButtonItem(title: "Remove All", style: .plain, target: self, action: #selector(self.removeAll))
+        self.navigationItem.leftItemsSupplementBackButton = true
+        self.navigationItem.leftBarButtonItem = removeAllButton
+        
         if let persistedLocations = UserDefaults.standard.array(forKey: self.userDefaultsLocationKey), persistedLocations.count > 0 {
-            print("")
-            // Pull fromapi each coordinated saved in UD
-            if let test = persistedLocations as? [[String:String]] {
-                self.getweather(latitude: test.first!["lat"]!, longitude: test.first!["lon"]!)
+            
+            for i in 0..<persistedLocations.count {
+                if let persistedCoordinates = persistedLocations[i] as? [String: String], let lat = persistedCoordinates["lat"], let lon = persistedCoordinates["lon"] {
+                    self.dispatchGroup.enter()
+                    self.getweather(latitude: lat, longitude: lon, dispatchingGroup: true)
+                }
             }
+            dispatchGroup.notify(queue: .main) {
+                //Stop indicator
+                print("aa")
+            }
+        }
+    }
+    
+    @objc func removeAll() {
+        UserDefaults.standard.removeObject(forKey: self.userDefaultsLocationKey)
+        self.locations = []
+        UIView.animate(withDuration: 1, animations: {
+            self.tableEmptyView.alpha = 1
+        }) { (_) in
+            self.tableView.reloadData()
         }
     }
     
@@ -65,11 +87,12 @@ class RootViewController: UIViewController {
             }
             if let indexToRemove = indexToRemove {
                 locations.remove(at: indexToRemove)
+                UserDefaults.standard.set(locations, forKey: self.userDefaultsLocationKey)
             }
         }
     }
     
-    func getweather(latitude: String, longitude: String) {
+    func getweather(latitude: String, longitude: String, dispatchingGroup: Bool) {
         Location.getWeather(networkManager: NetworkManager(), lat: latitude, lon: longitude, units: "metric", getForecast: false) { [weak self] (location, error) in
             if let location = location {
                 self?.locations.append(location)
@@ -78,11 +101,14 @@ class RootViewController: UIViewController {
                     self?.tableView.reloadData()
                 }
             } else {
-                let alert = UIAlertController(title: "Error!", message: "\(String(describing: error ?? ErrorString(rawValue: "Unknown error."))) Please try again.", preferredStyle: .alert)
+                let alert = UIAlertController(title: "Error!", message: "\(error ?? "") Please try again.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 DispatchQueue.main.async {
                     self?.present(alert, animated: true, completion: nil)
                 }
+            }
+            if dispatchingGroup {
+                self?.dispatchGroup.leave()
             }
         }
     }
@@ -102,7 +128,7 @@ extension RootViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             let locationToRemove = self.locations[indexPath.row]
-            self.removePersistedCoordinates(latitude: locationToRemove.lat, longitude: locationToRemove.long)
+            self.removePersistedCoordinates(latitude: "\(locationToRemove.lat)", longitude: "\(locationToRemove.lon)")
             self.locations.remove(at: indexPath.row)
             if self.locations.isEmpty{
                 UIView.animate(withDuration: 1, animations: {
@@ -127,7 +153,7 @@ extension RootViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier, for: indexPath) as? LocationTableViewCell {
             let location = self.locations[indexPath.row]
-            cell.coordinatesLabel.text = "\(location.lat), \(location.long)"
+            cell.coordinatesLabel.text = "\(location.lat), \(location.lon)"
             cell.locationNameLabel.text = location.name
             cell.temperatureLabel.text = "\(location.temperature)"
             return cell
@@ -140,7 +166,13 @@ extension RootViewController: UITableViewDataSource {
 
 extension RootViewController: BookmarkLocationDelegate {
     func addedLocation(latitude: String, longitude: String) {
-        self.persistCoordinates(latitude: latitude, longitude: longitude)
-        self.getweather(latitude: latitude, longitude: longitude)
+        let lat = round(100*Double(latitude)!)/100
+        let lon = round(100*Double(longitude)!)/100
+        
+        
+        let roundedlatitude = String(format: "%.2f", lat)
+        let roundedlongitude = String(format: "%.2f", lon)
+        self.persistCoordinates(latitude: roundedlatitude, longitude: roundedlongitude)
+        self.getweather(latitude: latitude, longitude: longitude, dispatchingGroup: false)
     }
 }

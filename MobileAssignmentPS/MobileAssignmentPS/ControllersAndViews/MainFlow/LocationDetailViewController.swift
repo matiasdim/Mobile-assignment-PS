@@ -20,8 +20,6 @@ class LocationDetailViewController: UIViewController {
         case minMax
         case visibility
         case cloudy
-        case sunTimes
-        
     }
     
     let location: Location
@@ -66,10 +64,7 @@ class LocationDetailViewController: UIViewController {
             self.headerView.isHidden = UIScreen.main.bounds.width > UIScreen.main.bounds.height
         }
         
-        let lat = Double(self.location.lat)
-        let lon = Double(self.location.long)
-        
-        let coordinates = CLLocationCoordinate2D(latitude:lat!, longitude:lon!)
+        let coordinates = CLLocationCoordinate2D(latitude:self.location.lat, longitude:self.location.lon)
         self.addPin(coordiante: coordinates)
         let regionRadius: CLLocationDistance = 1000
         let coordinateRegion = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
@@ -115,10 +110,7 @@ extension LocationDetailViewController: UICollectionViewDataSource {
                 cell.titleLabel.text = "Visibility (meter)"
             case .cloudy:
                 cell.valueLabel.text = "\(self.location.clouds)"
-                cell.titleLabel.text = "Cluds (%)"
-            case .sunTimes:
-                cell.valueLabel.text = "\(self.location.sunriseTime)/\(self.location.sunsetTime)"
-                cell.titleLabel.text = "Sunrise/Sunset (UTC)"
+                cell.titleLabel.text = "Clouds (%)"
             }
             
             return cell

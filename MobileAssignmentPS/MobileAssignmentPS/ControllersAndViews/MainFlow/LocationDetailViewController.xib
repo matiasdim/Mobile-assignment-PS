@@ -25,7 +25,7 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YMz-Ys-Sp9">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="205"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="215"/>
                             <subviews>
                                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="88N-9D-Rh4">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="145"/>
@@ -35,6 +35,7 @@
                                 </mapView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUX-EA-KMK">
                                     <rect key="frame" x="147" y="85" width="120" height="120"/>
+                                    <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="120" id="Zzh-Wp-97w"/>
                                         <constraint firstAttribute="height" constant="120" id="z1Z-bo-8GE"/>
@@ -44,21 +45,21 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstItem="88N-9D-Rh4" firstAttribute="top" secondItem="YMz-Ys-Sp9" secondAttribute="top" id="1kP-2Z-sNt"/>
                                 <constraint firstItem="88N-9D-Rh4" firstAttribute="leading" secondItem="YMz-Ys-Sp9" secondAttribute="leading" id="3bO-qG-Hf5"/>
                                 <constraint firstItem="MUX-EA-KMK" firstAttribute="top" secondItem="88N-9D-Rh4" secondAttribute="bottom" constant="-60" id="4dD-s2-fUI"/>
-                                <constraint firstAttribute="bottom" secondItem="MUX-EA-KMK" secondAttribute="bottom" id="KDU-6b-lfL"/>
+                                <constraint firstAttribute="bottom" secondItem="MUX-EA-KMK" secondAttribute="bottom" constant="10" id="KDU-6b-lfL"/>
                                 <constraint firstAttribute="trailing" secondItem="88N-9D-Rh4" secondAttribute="trailing" id="Q9d-Sm-gg1"/>
                                 <constraint firstItem="MUX-EA-KMK" firstAttribute="centerX" secondItem="YMz-Ys-Sp9" secondAttribute="centerX" id="ckS-gf-6DM"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qhT-6t-S90">
-                            <rect key="frame" x="0.0" y="205" width="414" height="613"/>
+                            <rect key="frame" x="0.0" y="215" width="414" height="603"/>
                             <subviews>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="9yH-62-dZd">
-                                    <rect key="frame" x="30" y="10" width="354" height="593"/>
+                                    <rect key="frame" x="30" y="10" width="354" height="583"/>
                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pds-YM-Bs1">
                                         <size key="itemSize" width="150" height="150"/>

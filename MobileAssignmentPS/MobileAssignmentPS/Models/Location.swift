@@ -14,46 +14,120 @@ enum ErrorString: String {
     case requestConstructionError = "An error occurred building the request. Please tryagain."
 }
 
-struct Location: Codable {
-    var lat: String
-    var long: String
+
+
+
+struct Location: Decodable {
+    var lat: Double
+    var lon: Double
     var weatherDescription: String
     var temperature: Double
     var feelsLike: Double
     var minTemp: Double
     var maxTemp: Double
-    var pressure: Int
-    var humidity: Double // %
+    var pressure: Double
+    var humidity: Double
     var visibility: Double
     var windSpeed: Double
-    var clouds: Double // %
+    var clouds: Double
     var sunriseTime: Int
     var sunsetTime: Int
     var name: String
     
-    static func getWeather(networkManager: NetworkManager, lat: String, lon: String, units: String, getForecast: Bool, completionHandler: @escaping (Location?, ErrorString?) -> ()) {
-        networkManager.getWeather(lat: lat, lon: lon, units: units, getForecast: getForecast) { (response) in
-            if let data = response.data {
-                do{
-                    let json = try JSONSerialization.jsonObject(with: data, options: [])
-                    if let dictionaryResponse = json as? [String: Any] {
-                        print(")")
-//MAP CODINGKEYS!!!!
-//                        Location(lat: lat, long: lon, weatherDescription: weatherDescription, temperature: <#T##Double#>, feelsLike: <#T##Double#>, minTemp: <#T##Double#>, maxTemp: <#T##Double#>, pressure: <#T##Int#>, humidity: <#T##Double#>, visibility: <#T##Double#>, windSpeed: <#T##Double#>, clouds: <#T##Double#>, sunriseTime: <#T##Int#>, sunsetTime: <#T##Int#>, name: <#T##String#>)
-                        completionHandler(Location(lat: "5.811651034173423", long: "-74.03015179965784", weatherDescription: "Cloudy", temperature: 20, feelsLike: 22, minTemp: 18, maxTemp: 24, pressure: 1999, humidity: 39, visibility: 199, windSpeed: 12, clouds: 2, sunriseTime: 2123123, sunsetTime: 213123, name: "Medellin"), nil)
-                    } else {
-                        completionHandler(nil, ErrorString.dataParsingError)
-                    }
-                } catch {
-                    completionHandler(nil, ErrorString.dataParsingError)
-                }
-            } else if let _ = response.networkError {
-                completionHandler(nil, ErrorString.requestError)
-            } else {
-                completionHandler(nil, ErrorString.requestConstructionError)
-            }
-            
-            
+    private enum CodingKeys: String, CodingKey {
+        case coord, weather, main, visibility, wind, clouds, sys, name
+
+        enum Coord: String, CodingKey {
+            case lat, lon
+        }
+        
+        enum Weather: String, CodingKey {
+            case weatherDescription = "description"
+        }
+        
+        enum Main: String, CodingKey {
+            case pressure, humidity, temperature = "temp", feelsLike = "feels_like",minTemp = "temp_min", maxTemp = "temp_max"
+        }
+        
+        enum Wind: String, CodingKey {
+             case windSpeed = "speed"
+        }
+        
+        enum Clouds: String, CodingKey {
+            case clouds = "all"
+        }
+        
+        enum Sys: String, CodingKey {
+            case sunriseTime = "sunrise"
+            case sunsetTime = "sunset"
         }
     }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.visibility = try container.decode(Double.self, forKey: .visibility)
+        self.name = try container.decode(String.self, forKey: .name)
+        
+        let coord = try container.nestedContainer(keyedBy: CodingKeys.Coord.self, forKey: .coord)
+        self.lat = try coord.decode(Double.self, forKey: .lat)
+        self.lon = try coord.decode(Double.self, forKey: .lon)
+       
+        var weatherContainer = try container.nestedUnkeyedContainer(forKey: .weather)
+        let firstWeatherDescription = try weatherContainer.nestedContainer(keyedBy: CodingKeys.Weather.self)
+        self.weatherDescription = try firstWeatherDescription.decode(String.self, forKey: .weatherDescription)
+
+        let main = try container.nestedContainer(keyedBy: CodingKeys.Main.self, forKey: .main)
+        self.temperature = try main.decode(Double.self, forKey: .temperature)
+        self.feelsLike = try main.decode(Double.self, forKey: .feelsLike)
+        self.minTemp = try main.decode(Double.self, forKey: .minTemp)
+        self.maxTemp = try main.decode(Double.self, forKey: .maxTemp)
+        self.pressure = try main.decode(Double.self, forKey: .pressure)
+        self.humidity = try main.decode(Double.self, forKey: .humidity)
+
+        let wind = try container.nestedContainer(keyedBy: CodingKeys.Wind.self, forKey: .wind)
+        self.windSpeed = try wind.decode(Double.self, forKey: .windSpeed)
+
+        let clouds = try container.nestedContainer(keyedBy: CodingKeys.Clouds.self, forKey: .clouds)
+        self.clouds = try clouds.decode(Double.self, forKey: .clouds)
+
+        let sys = try container.nestedContainer(keyedBy: CodingKeys.Sys.self, forKey: .sys)
+        self.sunriseTime = try sys.decode(Int.self, forKey: .sunriseTime)
+        self.sunsetTime = try sys.decode(Int.self, forKey: .sunsetTime)
+    }
+    
+    static func getWeather(networkManager: NetworkManager, lat: String, lon: String, units: String, getForecast: Bool, completionHandler: @escaping (Location?, String?) -> ()) {
+        networkManager.getWeather(lat: lat, lon: lon, units: units, getForecast: getForecast) { (response) in
+            if let data = response.data {
+                do {
+                    let location = try JSONDecoder().decode(Location.self, from: data)
+                    completionHandler(location, nil)
+                } catch {
+                    completionHandler(nil, ErrorString.dataParsingError.rawValue)
+                    print("error: ", error)
+                }
+/*
+                 } catch let DecodingError.dataCorrupted(context) {
+                     print(context)
+                 } catch let DecodingError.keyNotFound(key, context) {
+                     print("Key '\(key)' not found:", context.debugDescription)
+                     print("codingPath:", context.codingPath)
+                 } catch let DecodingError.valueNotFound(value, context) {
+                     print("Value '\(value)' not found:", context.debugDescription)
+                     print("codingPath:", context.codingPath)
+                 } catch let DecodingError.typeMismatch(type, context)  {
+                     print("Type '\(type)' mismatch:", context.debugDescription)
+                     print("codingPath:", context.codingPath)
+                 */
+            } else if let _ = response.networkError {
+                completionHandler(nil, ErrorString.requestError.rawValue)
+            } else {
+                completionHandler(nil, ErrorString.requestConstructionError.rawValue)
+            }
+
+
+        }
+    }
+
 }
+    
+    
