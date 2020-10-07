@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LocationDetailViewController" customModule="MobileAssignmentPS" customModuleProvider="target">
             <connections>
-                <outlet property="containerStackView" destination="3av-Jj-Cod" id="yhV-ww-kRE"/>
+                <outlet property="collectionView" destination="9yH-62-dZd" id="NTq-x2-Meb"/>
                 <outlet property="headerView" destination="YMz-Ys-Sp9" id="UFR-TQ-Fcd"/>
                 <outlet property="mapView" destination="88N-9D-Rh4" id="RvY-IW-MNn"/>
                 <outlet property="temperatureLabel" destination="MUX-EA-KMK" id="Ebt-em-zpt"/>
@@ -25,16 +25,16 @@
                     <rect key="frame" x="0.0" y="44" width="414" height="818"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YMz-Ys-Sp9">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="225.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="205"/>
                             <subviews>
                                 <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="88N-9D-Rh4">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="165.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="145"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" secondItem="88N-9D-Rh4" secondAttribute="height" multiplier="100:40" id="uEm-fX-BeL"/>
+                                        <constraint firstAttribute="width" secondItem="88N-9D-Rh4" secondAttribute="height" multiplier="100:35" id="uEm-fX-BeL"/>
                                     </constraints>
                                 </mapView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MUX-EA-KMK">
-                                    <rect key="frame" x="147" y="105.5" width="120" height="120"/>
+                                    <rect key="frame" x="147" y="85" width="120" height="120"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="120" id="Zzh-Wp-97w"/>
                                         <constraint firstAttribute="height" constant="120" id="z1Z-bo-8GE"/>
@@ -55,17 +55,30 @@
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qhT-6t-S90">
-                            <rect key="frame" x="0.0" y="225.5" width="414" height="592.5"/>
+                            <rect key="frame" x="0.0" y="205" width="414" height="613"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m8Z-9G-wgO">
-                                    <rect key="frame" x="186" y="32" width="42" height="21"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <nil key="textColor"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
+                                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="9yH-62-dZd">
+                                    <rect key="frame" x="30" y="10" width="354" height="593"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="pds-YM-Bs1">
+                                        <size key="itemSize" width="150" height="150"/>
+                                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                    </collectionViewFlowLayout>
+                                    <connections>
+                                        <outlet property="dataSource" destination="-1" id="02D-FA-Lf9"/>
+                                        <outlet property="delegate" destination="-1" id="W82-u6-ldg"/>
+                                    </connections>
+                                </collectionView>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            <constraints>
+                                <constraint firstItem="9yH-62-dZd" firstAttribute="top" secondItem="qhT-6t-S90" secondAttribute="top" constant="10" id="M3D-ch-Gp2"/>
+                                <constraint firstItem="9yH-62-dZd" firstAttribute="leading" secondItem="qhT-6t-S90" secondAttribute="leading" constant="30" id="fXm-FG-qpZ"/>
+                                <constraint firstAttribute="trailing" secondItem="9yH-62-dZd" secondAttribute="trailing" constant="30" id="hli-BA-d5V"/>
+                                <constraint firstAttribute="bottom" secondItem="9yH-62-dZd" secondAttribute="bottom" constant="10" id="xrp-U8-wRm"/>
+                            </constraints>
                         </view>
                     </subviews>
                 </stackView>
