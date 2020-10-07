@@ -7,12 +7,15 @@
 //
 
 import UIKit
+import MapKit
 
 class LocationDetailViewController: UIViewController {
     
     let location: Location
     @IBOutlet weak var temperatureLabel: UILabel!
-    
+    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var containerStackView: UIStackView!
+    @IBOutlet weak var headerView: UIView!
     
     init(location: Location) {
         self.location = location
@@ -29,8 +32,48 @@ class LocationDetailViewController: UIViewController {
         self.temperatureLabel.backgroundColor = .systemGray4
         self.temperatureLabel.textColor = .black
     }
+    
+    override func willTransition(to newCollection: UITraitCollection, with coordinator: UIViewControllerTransitionCoordinator) {
+        self.headerView.isHidden = UIDevice.current.orientation.isLandscape
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.headerView.isHidden = UIDevice.current.orientation.isLandscape
+        
+        let lat = Double(self.location.lat)
+        let lon = Double(self.location.long)
+        
+        let coordinates = CLLocationCoordinate2D(latitude:lat!, longitude:lon!)
+        self.addPin(coordiante: coordinates)
+        let regionRadius: CLLocationDistance = 1000
+        let coordinateRegion = MKCoordinateRegion(center: coordinates, latitudinalMeters: regionRadius, longitudinalMeters: regionRadius)
+        mapView.setRegion(coordinateRegion, animated: true)
+    }
 
+    func addPin(coordiante: CLLocationCoordinate2D) {
+        let newAnnotation = MKPointAnnotation()
+        newAnnotation.coordinate = coordiante
 
-  
+        self.mapView.addAnnotation(newAnnotation)
+    }
+}
 
+extension LocationDetailViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        return 0
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        
+        return UICollectionViewCell()
+    }
+    
+    
+}
+
+extension LocationDetailViewController: UICollectionViewDelegate {
+    
 }
