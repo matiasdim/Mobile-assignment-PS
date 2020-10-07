@@ -18,6 +18,8 @@ class RootViewController: UIViewController {
     
     var locations: [Location] = []
     let cellReuseIdentifier = "reuseIdentifier"
+    
+    let indicatorVC = ActivityIndicatorViewController()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -93,7 +95,9 @@ class RootViewController: UIViewController {
     }
     
     func getweather(latitude: String, longitude: String, dispatchingGroup: Bool) {
+        self.addActivityIndicator()
         Location.getWeather(networkManager: NetworkManager(), lat: latitude, lon: longitude, units: "metric", getForecast: false) { [weak self] (location, error) in
+            self?.removectivityIndicator()
             if let location = location {
                 self?.locations.append(location)
                 DispatchQueue.main.async {
@@ -110,6 +114,21 @@ class RootViewController: UIViewController {
             if dispatchingGroup {
                 self?.dispatchGroup.leave()
             }
+        }
+    }
+    
+    func addActivityIndicator() {
+        self.addChild(self.indicatorVC)
+        self.indicatorVC.view.frame = self.view.frame
+        self.view.addSubview(self.indicatorVC.view)
+        self.indicatorVC.didMove(toParent: self)
+    }
+    
+    func removectivityIndicator() {
+        DispatchQueue.main.async {
+            self.indicatorVC.willMove(toParent: nil)
+            self.indicatorVC.view.removeFromSuperview()
+            self.indicatorVC.removeFromParent()
         }
     }
 }
