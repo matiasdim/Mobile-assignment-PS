@@ -40,7 +40,7 @@ struct Location: Codable {
                         print(")")
 //MAP CODINGKEYS!!!!
 //                        Location(lat: lat, long: lon, weatherDescription: weatherDescription, temperature: <#T##Double#>, feelsLike: <#T##Double#>, minTemp: <#T##Double#>, maxTemp: <#T##Double#>, pressure: <#T##Int#>, humidity: <#T##Double#>, visibility: <#T##Double#>, windSpeed: <#T##Double#>, clouds: <#T##Double#>, sunriseTime: <#T##Int#>, sunsetTime: <#T##Int#>, name: <#T##String#>)
-                        completionHandler(Location(lat: "1", long: "1", weatherDescription: "Cloudy", temperature: 20, feelsLike: 22, minTemp: 18, maxTemp: 24, pressure: 1999, humidity: 39, visibility: 199, windSpeed: 12, clouds: 2, sunriseTime: 2123123, sunsetTime: 213123, name: "Medellin"), nil)
+                        completionHandler(Location(lat: "5.811651034173423", long: "-74.03015179965784", weatherDescription: "Cloudy", temperature: 20, feelsLike: 22, minTemp: 18, maxTemp: 24, pressure: 1999, humidity: 39, visibility: 199, windSpeed: 12, clouds: 2, sunriseTime: 2123123, sunsetTime: 213123, name: "Medellin"), nil)
                     } else {
                         completionHandler(nil, ErrorString.dataParsingError)
                     }

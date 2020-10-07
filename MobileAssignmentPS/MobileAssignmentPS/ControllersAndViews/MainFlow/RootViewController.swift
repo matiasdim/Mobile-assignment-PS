@@ -53,6 +53,22 @@ class RootViewController: UIViewController {
         }
     }
     
+    func removePersistedCoordinates(latitude: String, longitude: String) {
+        let locationDict = ["lat": latitude, "lon": longitude]
+        if var locations = UserDefaults.standard.array(forKey: self.userDefaultsLocationKey) as? [[String: String]] {
+            var indexToRemove: Int?
+            for (index, dict) in locations.enumerated() {
+                if dict == locationDict {
+                    indexToRemove = index
+                    break
+                }
+            }
+            if let indexToRemove = indexToRemove {
+                locations.remove(at: indexToRemove)
+            }
+        }
+    }
+    
     func getweather(latitude: String, longitude: String) {
         Location.getWeather(networkManager: NetworkManager(), lat: latitude, lon: longitude, units: "metric", getForecast: false) { [weak self] (location, error) in
             if let location = location {
@@ -85,6 +101,8 @@ extension RootViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let locationToRemove = self.locations[indexPath.row]
+            self.removePersistedCoordinates(latitude: locationToRemove.lat, longitude: locationToRemove.long)
             self.locations.remove(at: indexPath.row)
             if self.locations.isEmpty{
                 UIView.animate(withDuration: 1, animations: {
@@ -109,7 +127,7 @@ extension RootViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier, for: indexPath) as? LocationTableViewCell {
             let location = self.locations[indexPath.row]
-            cell.coordinatesLabel.text = "Coordinates: \(location.lat), \(location.long)"
+            cell.coordinatesLabel.text = "\(location.lat), \(location.long)"
             cell.locationNameLabel.text = location.name
             cell.temperatureLabel.text = "\(location.temperature)"
             return cell
