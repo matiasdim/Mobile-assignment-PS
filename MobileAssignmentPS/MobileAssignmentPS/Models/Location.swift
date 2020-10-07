@@ -15,8 +15,8 @@ enum ErrorString: String {
 }
 
 struct Location: Codable {
-    var lat: Double
-    var long: Double
+    var lat: String
+    var long: String
     var weatherDescription: String
     var temperature: Double
     var feelsLike: Double
@@ -31,13 +31,16 @@ struct Location: Codable {
     var sunsetTime: Int
     var name: String
     
-    static func getWeather(networkManager: NetworkManager, lat: String, lon: String, units: String, getForecast: Bool, completionHandler: @escaping (Dictionary<String, Any>?, ErrorString?) -> ()) {
+    static func getWeather(networkManager: NetworkManager, lat: String, lon: String, units: String, getForecast: Bool, completionHandler: @escaping (Location?, ErrorString?) -> ()) {
         networkManager.getWeather(lat: lat, lon: lon, units: units, getForecast: getForecast) { (response) in
             if let data = response.data {
                 do{
                     let json = try JSONSerialization.jsonObject(with: data, options: [])
                     if let dictionaryResponse = json as? [String: Any] {
-                        completionHandler(dictionaryResponse, nil)
+                        print(")")
+//MAP CODINGKEYS!!!!
+//                        Location(lat: lat, long: lon, weatherDescription: weatherDescription, temperature: <#T##Double#>, feelsLike: <#T##Double#>, minTemp: <#T##Double#>, maxTemp: <#T##Double#>, pressure: <#T##Int#>, humidity: <#T##Double#>, visibility: <#T##Double#>, windSpeed: <#T##Double#>, clouds: <#T##Double#>, sunriseTime: <#T##Int#>, sunsetTime: <#T##Int#>, name: <#T##String#>)
+                        completionHandler(Location(lat: "1", long: "1", weatherDescription: "Cloudy", temperature: 20, feelsLike: 22, minTemp: 18, maxTemp: 24, pressure: 1999, humidity: 39, visibility: 199, windSpeed: 12, clouds: 2, sunriseTime: 2123123, sunsetTime: 213123, name: "Medellin"), nil)
                     } else {
                         completionHandler(nil, ErrorString.dataParsingError)
                     }

@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RootViewController" customModule="MobileAssignmentPS" customModuleProvider="target">
             <connections>
+                <outlet property="tableEmptyView" destination="73S-RJ-aXo" id="bLF-HD-aId"/>
                 <outlet property="tableView" destination="OHk-X0-hGp" id="myp-dJ-V0V"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -26,6 +27,26 @@
                         <outlet property="delegate" destination="-1" id="reF-7A-7yg"/>
                     </connections>
                 </tableView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="73S-RJ-aXo">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="607"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No bookmarks! Press &quot;Add Location below to bookmark a location." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Ud-0F-wLG">
+                            <rect key="frame" x="30" y="9" width="315" height="589"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="28"/>
+                            <color key="textColor" systemColor="systemGray2Color" red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                    <constraints>
+                        <constraint firstItem="3Ud-0F-wLG" firstAttribute="centerX" secondItem="73S-RJ-aXo" secondAttribute="centerX" id="1s7-Az-bbg"/>
+                        <constraint firstItem="3Ud-0F-wLG" firstAttribute="centerY" secondItem="73S-RJ-aXo" secondAttribute="centerY" id="Gcq-CE-nvB"/>
+                        <constraint firstAttribute="trailing" secondItem="3Ud-0F-wLG" secondAttribute="trailing" constant="30" id="J9a-Gm-ZtM"/>
+                        <constraint firstAttribute="bottom" secondItem="3Ud-0F-wLG" secondAttribute="bottom" constant="9" id="i26-br-XmX"/>
+                        <constraint firstItem="3Ud-0F-wLG" firstAttribute="leading" secondItem="73S-RJ-aXo" secondAttribute="leading" constant="30" id="uli-FC-ldh"/>
+                        <constraint firstItem="3Ud-0F-wLG" firstAttribute="top" secondItem="73S-RJ-aXo" secondAttribute="top" constant="9" id="vGg-3a-6RV"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="12Z-P8-lAN">
                     <rect key="frame" x="0.0" y="607" width="375" height="60"/>
                     <subviews>
@@ -38,6 +59,9 @@
                             <state key="normal" title="Add Location">
                                 <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </state>
+                            <connections>
+                                <action selector="addLocation:" destination="-1" eventType="touchUpInside" id="bOv-ix-Y6p"/>
+                            </connections>
                         </button>
                     </subviews>
                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -56,7 +80,11 @@
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="12Z-P8-lAN" secondAttribute="bottom" id="EFB-bP-zAq"/>
                 <constraint firstItem="OHk-X0-hGp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="EuW-rP-L7G"/>
                 <constraint firstItem="12Z-P8-lAN" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="IaR-bC-wy2"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="73S-RJ-aXo" secondAttribute="trailing" id="UXq-Qi-gFX"/>
+                <constraint firstItem="73S-RJ-aXo" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Ut6-Gc-rzH"/>
                 <constraint firstItem="OHk-X0-hGp" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="eNz-oi-ols"/>
+                <constraint firstItem="12Z-P8-lAN" firstAttribute="top" secondItem="73S-RJ-aXo" secondAttribute="bottom" id="g50-YO-kFK"/>
+                <constraint firstItem="73S-RJ-aXo" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="hJo-la-IbI"/>
                 <constraint firstItem="12Z-P8-lAN" firstAttribute="top" secondItem="OHk-X0-hGp" secondAttribute="bottom" id="sJt-Ed-J94"/>
                 <constraint firstItem="12Z-P8-lAN" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="sXo-J3-Qga"/>
             </constraints>

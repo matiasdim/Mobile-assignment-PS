@@ -21,6 +21,8 @@
 		608C4019252D26D300C8B740 /* LocationDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608C4017252D26D300C8B740 /* LocationDetailViewController.swift */; };
 		608C401A252D26D300C8B740 /* LocationDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 608C4018252D26D300C8B740 /* LocationDetailViewController.xib */; };
 		608C401C252D283700C8B740 /* Extras.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608C401B252D283700C8B740 /* Extras.swift */; };
+		608C401F252D349500C8B740 /* AddLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608C401D252D349500C8B740 /* AddLocationViewController.swift */; };
+		608C4020252D349500C8B740 /* AddLocationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 608C401E252D349500C8B740 /* AddLocationViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +54,8 @@
 		608C4017252D26D300C8B740 /* LocationDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDetailViewController.swift; sourceTree = "<group>"; };
 		608C4018252D26D300C8B740 /* LocationDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocationDetailViewController.xib; sourceTree = "<group>"; };
 		608C401B252D283700C8B740 /* Extras.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extras.swift; sourceTree = "<group>"; };
+		608C401D252D349500C8B740 /* AddLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddLocationViewController.swift; sourceTree = "<group>"; };
+		608C401E252D349500C8B740 /* AddLocationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddLocationViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,12 +130,8 @@
 		6080F159252CDC9B009FA4A2 /* ControllersAndViews */ = {
 			isa = PBXGroup;
 			children = (
-				603A5C16252D06CD00E2B530 /* RootViewController.swift */,
-				603A5C17252D06CD00E2B530 /* RootViewController.xib */,
-				608C4017252D26D300C8B740 /* LocationDetailViewController.swift */,
-				608C4018252D26D300C8B740 /* LocationDetailViewController.xib */,
-				603A5C1A252D0C4F00E2B530 /* LocationTableViewCell.swift */,
-				603A5C1B252D0C4F00E2B530 /* LocationTableViewCell.xib */,
+				608C4022252D34D000C8B740 /* Resources */,
+				608C4021252D349F00C8B740 /* MainFlow */,
 			);
 			path = ControllersAndViews;
 			sourceTree = "<group>";
@@ -142,6 +142,28 @@
 				6080F161252CE1CD009FA4A2 /* NetworkManager.swift */,
 			);
 			path = Networking;
+			sourceTree = "<group>";
+		};
+		608C4021252D349F00C8B740 /* MainFlow */ = {
+			isa = PBXGroup;
+			children = (
+				603A5C16252D06CD00E2B530 /* RootViewController.swift */,
+				603A5C17252D06CD00E2B530 /* RootViewController.xib */,
+				608C401D252D349500C8B740 /* AddLocationViewController.swift */,
+				608C401E252D349500C8B740 /* AddLocationViewController.xib */,
+				608C4017252D26D300C8B740 /* LocationDetailViewController.swift */,
+				608C4018252D26D300C8B740 /* LocationDetailViewController.xib */,
+			);
+			path = MainFlow;
+			sourceTree = "<group>";
+		};
+		608C4022252D34D000C8B740 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				603A5C1A252D0C4F00E2B530 /* LocationTableViewCell.swift */,
+				603A5C1B252D0C4F00E2B530 /* LocationTableViewCell.xib */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -226,6 +248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6080F143252CD68E009FA4A2 /* LaunchScreen.storyboard in Resources */,
+				608C4020252D349500C8B740 /* AddLocationViewController.xib in Resources */,
 				6080F140252CD68E009FA4A2 /* Assets.xcassets in Resources */,
 				608C401A252D26D300C8B740 /* LocationDetailViewController.xib in Resources */,
 				603A5C1D252D0C4F00E2B530 /* LocationTableViewCell.xib in Resources */,
@@ -251,6 +274,7 @@
 				603A5C18252D06CD00E2B530 /* RootViewController.swift in Sources */,
 				608C4019252D26D300C8B740 /* LocationDetailViewController.swift in Sources */,
 				6080F137252CD68A009FA4A2 /* AppDelegate.swift in Sources */,
+				608C401F252D349500C8B740 /* AddLocationViewController.swift in Sources */,
 				6080F139252CD68A009FA4A2 /* SceneDelegate.swift in Sources */,
 				6080F162252CE1CD009FA4A2 /* NetworkManager.swift in Sources */,
 				608C401C252D283700C8B740 /* Extras.swift in Sources */,
