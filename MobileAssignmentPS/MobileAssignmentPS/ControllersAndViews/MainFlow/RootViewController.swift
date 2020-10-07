@@ -25,7 +25,8 @@ class RootViewController: UIViewController {
         super.viewDidLoad()
         self.title = "My Locations"
         self.tableView.register(UINib(nibName: "LocationTableViewCell", bundle: nil), forCellReuseIdentifier: self.cellReuseIdentifier)
-        
+
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Help", style: .plain, target: self, action: #selector(self.openHelp))
         let removeAllButton = UIBarButtonItem(title: "Remove All", style: .plain, target: self, action: #selector(self.removeAll))
         self.navigationItem.leftItemsSupplementBackButton = true
         self.navigationItem.leftBarButtonItem = removeAllButton
@@ -43,6 +44,10 @@ class RootViewController: UIViewController {
                 print("aa")
             }
         }
+    }
+    
+    @objc func openHelp() {
+        self.present(HelpViewController(), animated: true)
     }
     
     @objc func removeAll() {
@@ -63,7 +68,7 @@ class RootViewController: UIViewController {
     @IBAction func addLocation(_ sender: Any) {
         let addLocationViewController = AddLocationViewController()
         addLocationViewController.delegate = self
-        self.present(addLocationViewController, animated: true, completion: nil)
+        self.present(addLocationViewController, animated: true)
     }
     
     func persistCoordinates(latitude: String, longitude: String) {
@@ -108,7 +113,7 @@ class RootViewController: UIViewController {
                 let alert = UIAlertController(title: "Error!", message: "\(error ?? "") Please try again.", preferredStyle: .alert)
                 alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                 DispatchQueue.main.async {
-                    self?.present(alert, animated: true, completion: nil)
+                    self?.present(alert, animated: true)
                 }
             }
             if dispatchingGroup {

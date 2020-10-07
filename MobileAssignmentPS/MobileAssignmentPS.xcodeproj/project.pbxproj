@@ -14,6 +14,9 @@
 		605BFA6D252D698C002A8BEC /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605BFA6B252D698C002A8BEC /* CustomCollectionViewCell.swift */; };
 		605BFA6E252D698C002A8BEC /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 605BFA6C252D698C002A8BEC /* CustomCollectionViewCell.xib */; };
 		605BFA70252DB426002A8BEC /* ActivityIndicatorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605BFA6F252DB426002A8BEC /* ActivityIndicatorViewController.swift */; };
+		605BFA73252DB7A4002A8BEC /* HelpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605BFA71252DB7A4002A8BEC /* HelpViewController.swift */; };
+		605BFA74252DB7A4002A8BEC /* HelpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 605BFA72252DB7A4002A8BEC /* HelpViewController.xib */; };
+		605BFA77252DBBFF002A8BEC /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 605BFA76252DBBFF002A8BEC /* WebKit.framework */; };
 		6080F137252CD68A009FA4A2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6080F136252CD68A009FA4A2 /* AppDelegate.swift */; };
 		6080F139252CD68A009FA4A2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6080F138252CD68A009FA4A2 /* SceneDelegate.swift */; };
 		6080F140252CD68E009FA4A2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6080F13F252CD68E009FA4A2 /* Assets.xcassets */; };
@@ -46,6 +49,9 @@
 		605BFA6B252D698C002A8BEC /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		605BFA6C252D698C002A8BEC /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		605BFA6F252DB426002A8BEC /* ActivityIndicatorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicatorViewController.swift; sourceTree = "<group>"; };
+		605BFA71252DB7A4002A8BEC /* HelpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HelpViewController.swift; sourceTree = "<group>"; };
+		605BFA72252DB7A4002A8BEC /* HelpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HelpViewController.xib; sourceTree = "<group>"; };
+		605BFA76252DBBFF002A8BEC /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		6080F133252CD68A009FA4A2 /* MobileAssignmentPS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MobileAssignmentPS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6080F136252CD68A009FA4A2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6080F138252CD68A009FA4A2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +75,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				605BFA77252DBBFF002A8BEC /* WebKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -82,12 +89,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		605BFA75252DBBFE002A8BEC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				605BFA76252DBBFF002A8BEC /* WebKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		6080F12A252CD68A009FA4A2 = {
 			isa = PBXGroup;
 			children = (
 				6080F135252CD68A009FA4A2 /* MobileAssignmentPS */,
 				6080F14C252CD68E009FA4A2 /* MobileAssignmentPSTests */,
 				6080F134252CD68A009FA4A2 /* Products */,
+				605BFA75252DBBFE002A8BEC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -159,6 +175,8 @@
 				608C401E252D349500C8B740 /* AddLocationViewController.xib */,
 				608C4017252D26D300C8B740 /* LocationDetailViewController.swift */,
 				608C4018252D26D300C8B740 /* LocationDetailViewController.xib */,
+				605BFA71252DB7A4002A8BEC /* HelpViewController.swift */,
+				605BFA72252DB7A4002A8BEC /* HelpViewController.xib */,
 			);
 			path = MainFlow;
 			sourceTree = "<group>";
@@ -263,6 +281,7 @@
 				603A5C1D252D0C4F00E2B530 /* LocationTableViewCell.xib in Resources */,
 				603A5C19252D06CD00E2B530 /* RootViewController.xib in Resources */,
 				605BFA6E252D698C002A8BEC /* CustomCollectionViewCell.xib in Resources */,
+				605BFA74252DB7A4002A8BEC /* HelpViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,6 +306,7 @@
 				608C4019252D26D300C8B740 /* LocationDetailViewController.swift in Sources */,
 				6080F137252CD68A009FA4A2 /* AppDelegate.swift in Sources */,
 				608C401F252D349500C8B740 /* AddLocationViewController.swift in Sources */,
+				605BFA73252DB7A4002A8BEC /* HelpViewController.swift in Sources */,
 				6080F139252CD68A009FA4A2 /* SceneDelegate.swift in Sources */,
 				6080F162252CE1CD009FA4A2 /* NetworkManager.swift in Sources */,
 				608C401C252D283700C8B740 /* Extras.swift in Sources */,
