@@ -20,6 +20,14 @@ class RootViewController: UIViewController {
     let cellReuseIdentifier = "reuseIdentifier"
     
     let indicatorVC = ActivityIndicatorViewController()
+    let searchController = UISearchController(searchResultsController: nil)
+    var filteredLocations: [Location] = []
+    var isSearchBarEmpty: Bool {
+      return self.searchController.searchBar.text?.isEmpty ?? true
+    }
+    var isFiltering: Bool {
+        return self.searchController.isActive && !self.isSearchBarEmpty
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +39,14 @@ class RootViewController: UIViewController {
         self.navigationItem.leftItemsSupplementBackButton = true
         self.navigationItem.leftBarButtonItem = removeAllButton
         
+        if #available(iOS 11.0, *) {
+            self.searchController.searchResultsUpdater = self
+            self.searchController.obscuresBackgroundDuringPresentation = false
+            self.searchController.searchBar.placeholder = "Search Locations"
+            self.navigationItem.searchController = self.searchController
+            self.definesPresentationContext = true
+            self.navigationItem.hidesSearchBarWhenScrolling = true
+        }
         if let persistedLocations = UserDefaults.standard.array(forKey: self.userDefaultsLocationKey), persistedLocations.count > 0 {
             
             for i in 0..<persistedLocations.count {
@@ -38,10 +54,6 @@ class RootViewController: UIViewController {
                     self.dispatchGroup.enter()
                     self.getweather(latitude: lat, longitude: lon, dispatchingGroup: true)
                 }
-            }
-            dispatchGroup.notify(queue: .main) {
-                //Stop indicator
-                print("aa")
             }
         }
     }
@@ -63,6 +75,10 @@ class RootViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.tableEmptyView.alpha = self.locations.isEmpty ? 1 : 0
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
     }
 
     @IBAction func addLocation(_ sender: Any) {
@@ -136,6 +152,13 @@ class RootViewController: UIViewController {
             self.indicatorVC.removeFromParent()
         }
     }
+    
+    func filterContentForSearchText(_ searchText: String) {
+        self.filteredLocations = self.locations.filter { (location: Location) -> Bool in
+            return location.name.lowercased().contains(searchText.lowercased())
+        }
+        self.tableView.reloadData()
+    }
 }
 
 
@@ -146,7 +169,13 @@ extension RootViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.navigationController?.pushViewController(LocationDetailViewController(location: self.locations[indexPath.row]), animated: true)
+        let locations: [Location]
+        if self.isFiltering {
+            locations = self.filteredLocations
+        } else {
+            locations = self.locations
+        }
+        self.navigationController?.pushViewController(LocationDetailViewController(location: locations[indexPath.row]), animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -171,12 +200,21 @@ extension RootViewController: UITableViewDelegate {
 extension RootViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if self.isFiltering {
+            return self.filteredLocations.count
+        }
         return self.locations.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier, for: indexPath) as? LocationTableViewCell {
-            let location = self.locations[indexPath.row]
+            let location: Location
+            if self.isFiltering {
+                location = self.filteredLocations[indexPath.row]
+            } else {
+                location = self.locations[indexPath.row]
+            }
+            
             cell.coordinatesLabel.text = "\(location.lat), \(location.lon)"
             cell.locationNameLabel.text = location.name
             cell.temperatureLabel.text = "\(location.temperature)"
@@ -199,4 +237,13 @@ extension RootViewController: BookmarkLocationDelegate {
         self.persistCoordinates(latitude: roundedlatitude, longitude: roundedlongitude)
         self.getweather(latitude: latitude, longitude: longitude, dispatchingGroup: false)
     }
+}
+
+extension RootViewController: UISearchResultsUpdating {
+    func updateSearchResults(for searchController: UISearchController) {
+        let searchBar = searchController.searchBar
+        self.filterContentForSearchText(searchBar.text!)
+    }
+    
+    
 }
